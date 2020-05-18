@@ -10,21 +10,46 @@ useKeydown(keys, handler);
 
 ### Parameters
 
-- `keys`
-- `handler`
+- `keys` a single or array of key value](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) to listen to.
+- `handler` function to be called when one of the matching key values has been pressed.
 
 ### Example
+
+Listening to a single key:
 
 ```jsx
 import useKeydown from 'react-use-keydown';
 
 const Example = props => {
+  …
   useKeydown('Escape', () => {
-    // Do something when the user has press the Escape key
+    // Do something when the user has pressed the Escape key
   });
-  ...
+  …
 };
 ```
+
+Listening to multiple keys:
+
+```jsx
+import useKeydown from 'react-use-keydown';
+
+const Example = props => {
+  …
+  useKeydown(['ArrowLeft', 'ArrowRight'], (event) => {
+    if (event.key === 'ArrowLeft') {
+      moveLeft();
+    } else {
+      moveRight();
+    }
+  });
+  …
+};
+```
+
+## Browser Support
+
+Includes a shim for the `KeyboardEvent.key` property to handle inconsistencies from Internet Explorer and older versions of Edge and Firefox. 
 
 ## Requirements
 
