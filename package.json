@@ -23,6 +23,8 @@
     "hook",
     "key",
     "keyboard",
+    "keydown",
+    "keypress",
     "react",
     "window"
   ],
