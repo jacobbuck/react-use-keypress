@@ -1,9 +1,9 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import useKeydown from '..';
+import useKeypress from '..';
 
 test('calls handler when matching key has been pressed', () => {
   const handler = jest.fn();
-  renderHook(() => useKeydown('Escape', handler));
+  renderHook(() => useKeypress('Escape', handler));
 
   const event = new KeyboardEvent('keydown', { key: 'Escape' });
 
@@ -16,7 +16,7 @@ test('calls handler when matching key has been pressed', () => {
 
 test('calls handler when matching keys has been pressed', () => {
   const handler = jest.fn();
-  renderHook(() => useKeydown(['Enter', ' '], handler));
+  renderHook(() => useKeypress(['Enter', ' '], handler));
 
   const event1 = new KeyboardEvent('keydown', { key: 'Enter' });
   const event2 = new KeyboardEvent('keydown', { key: ' ' });
@@ -35,7 +35,7 @@ test('calls handler when matching keys has been pressed', () => {
 
 test('does not call handler when non-matching key has been pressed', () => {
   const handler = jest.fn();
-  renderHook(() => useKeydown('Escape', handler));
+  renderHook(() => useKeypress('Escape', handler));
 
   act(() => {
     window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
@@ -46,7 +46,7 @@ test('does not call handler when non-matching key has been pressed', () => {
 
 test('supports older browsers', () => {
   const handler = jest.fn();
-  renderHook(() => useKeydown('Escape', handler));
+  renderHook(() => useKeypress('Escape', handler));
 
   const event = new KeyboardEvent('keydown', { key: 'Esc' });
 

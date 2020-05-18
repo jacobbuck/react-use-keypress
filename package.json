@@ -1,5 +1,5 @@
 {
-  "name": "react-use-keydown",
+  "name": "react-use-keypress",
   "version": "0.0.1",
   "description": "React hook which listens for pressed keys",
   "main": "lib/index.cjs.js",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jacobbuck/react-use-keydown.git"
+    "url": "git+https://github.com/jacobbuck/react-use-keypress.git"
   },
   "keywords": [
     "event",
@@ -28,9 +28,9 @@
   "author": "Jacob Buck",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jacobbuck/react-use-keydown/issues"
+    "url": "https://github.com/jacobbuck/react-use-keypress/issues"
   },
-  "homepage": "https://github.com/jacobbuck/react-use-keydown#readme",
+  "homepage": "https://github.com/jacobbuck/react-use-keypress#readme",
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",

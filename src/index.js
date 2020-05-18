@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import castArray from './castArray';
 import shimKeyboardEvent from './shimKeyboardEvent';
 
-const useEscapeKey = (keys, handler) => {
+const useKeypress = (keys, handler) => {
   const keysRef = useRef(keys);
   const handerRef = useRef(handler);
 
@@ -28,4 +28,4 @@ const useEscapeKey = (keys, handler) => {
   }, []);
 };
 
-export default useEscapeKey;
+export default useKeyPress;
