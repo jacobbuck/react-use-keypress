@@ -1,6 +1,6 @@
 {
   "name": "react-use-keypress",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "React hook which listens for pressed keys",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
