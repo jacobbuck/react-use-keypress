@@ -11,7 +11,8 @@
     "build": "rollup -c",
     "lint": "eslint src/",
     "test": "jest",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test"
   },
   "repository": {
     "type": "git",
