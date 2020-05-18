@@ -28,4 +28,4 @@ const useKeypress = (keys, handler) => {
   }, []);
 };
 
-export default useKeyPress;
+export default useKeypress;
