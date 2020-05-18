@@ -1,0 +1,60 @@
+{
+  "name": "react-use-keydown",
+  "version": "1.0.0",
+  "description": "React hook which listens for pressed keys",
+  "main": "lib/index.cjs.js",
+  "module": "lib/index.esm.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint src/",
+    "test": "jest",
+    "prepare": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jacobbuck/react-use-keydown.git"
+  },
+  "keywords": [
+    "event",
+    "hook",
+    "key",
+    "keyboard",
+    "react",
+    "window"
+  ],
+  "author": "Jacob Buck",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jacobbuck/react-use-keydown/issues"
+  },
+  "homepage": "https://github.com/jacobbuck/react-use-keydown#readme",
+  "devDependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@testing-library/react-hooks": "^3.2.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "eslint-plugin-react-hooks": "^4.0.2",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.2",
+    "prettier": "^2.0.5",
+    "react": "^16.13.1",
+    "react-test-renderer": "^16.13.1",
+    "rollup": "^2.10.2",
+    "rollup-plugin-babel": "^4.4.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
+}
