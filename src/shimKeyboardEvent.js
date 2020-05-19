@@ -22,8 +22,12 @@ const aliases = new Map([
 
 const shimKeyboardEvent = (event) => {
   if (aliases.has(event.key)) {
+    const key = aliases.get(event.key);
+
     Object.defineProperty(event, 'key', {
-      value: aliases.get(event.key),
+      get() {
+        return key;
+      },
     });
   }
 };
