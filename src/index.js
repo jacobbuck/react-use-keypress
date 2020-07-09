@@ -1,15 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+import useLatest from 'use-latest';
 import castArray from './castArray';
 import shimKeyboardEvent from './shimKeyboardEvent';
 
 const useKeypress = (keys, handler) => {
-  const keysRef = useRef(keys);
-  const handerRef = useRef(handler);
-
-  useEffect(() => {
-    keysRef.current = keys;
-    handerRef.current = handler;
-  }, [keys, handler]);
+  const keysRef = useLatest(keys);
+  const handerRef = useLatest(handler);
 
   useEffect(() => {
     const handleKeydown = (event) => {

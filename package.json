@@ -34,6 +34,10 @@
     "url": "https://github.com/jacobbuck/react-use-keypress/issues"
   },
   "homepage": "https://github.com/jacobbuck/react-use-keypress#readme",
+
+  "dependencies": {
+    "use-latest": "^1.1.0"
+  },
   "devDependencies": {
     "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
