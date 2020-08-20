@@ -49,7 +49,7 @@ const Example = props => {
 
 ## Browser Support
 
-Includes a shim for the `KeyboardEvent.key` property to handle inconsistencies from Internet Explorer and older versions of Edge and Firefox. 
+Includes a shim for the `KeyboardEvent.key` property to handle inconsistencies from Internet Explorer and older versions of Edge and Firefox.
 
 ## Requirements
 
