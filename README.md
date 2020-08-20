@@ -10,7 +10,7 @@ useKeypress(keys, handler);
 
 ### Parameters
 
-- `keys` a single or array of key value](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) to listen to.
+- `keys` a single or array of [key value(s)](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key/Key_Values) to listen to.
 - `handler` function to be called when one of the matching key values has been pressed.
 
 ### Example
