@@ -57,10 +57,5 @@
   },
   "peerDependencies": {
     "react": "^16.8.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
 }
