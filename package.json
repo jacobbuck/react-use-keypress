@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "build": "rollup -c",
+    "coverage": "jest --coverage",
     "format": "prettier --write .",
     "lint": "eslint .",
     "prepare": "npm run build",
