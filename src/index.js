@@ -21,7 +21,7 @@ const useKeypress = (keys, handler) => {
     return () => {
       window.removeEventListener('keydown', handleKeydown);
     };
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 };
 
 export default useKeypress;
