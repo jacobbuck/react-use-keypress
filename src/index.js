@@ -3,7 +3,7 @@ import useLatest from 'use-latest';
 import castArray from './castArray';
 import shimKeyboardEvent from './shimKeyboardEvent';
 
-const useKeypress = (keys, handler) => {
+const useKeypress = (keys, handler = () => {}) => {
   const keysRef = useLatest(keys);
   const handerRef = useLatest(handler);
 
