@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import useLatest from 'use-latest';
-import castArray from './castArray';
 import shimKeyboardEvent from './shimKeyboardEvent';
 
 const useKeypress = (keys, handler = () => {}) => {
@@ -11,7 +10,11 @@ const useKeypress = (keys, handler = () => {}) => {
     const handleKeydown = (event) => {
       shimKeyboardEvent(event);
 
-      if (castArray(keysRef.current).includes(event.key)) {
+      if (
+        Array.isArray(keysRef.current)
+          ? keysRef.current.includes(event.key)
+          : keysRef.current === event.key
+      ) {
         handerRef.current(event);
       }
     };
