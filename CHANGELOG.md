@@ -5,6 +5,7 @@
 ### Changed
 
 - Updated `handler` parameter to allow nullish values.
+- Updated devDependencies.
 
 ## v1.0.1 - 2020-07-09
 
