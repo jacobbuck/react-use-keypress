@@ -20,12 +20,12 @@ Listening to a single key:
 ```jsx
 import useKeypress from 'react-use-keypress';
 
-const Example = props => {
-  …
+const Example = (props) => {
+  // ...
   useKeypress('Escape', () => {
     // Do something when the user has pressed the Escape key
   });
-  …
+  // ...
 };
 ```
 
@@ -34,8 +34,8 @@ Listening to multiple keys:
 ```jsx
 import useKeypress from 'react-use-keypress';
 
-const Example = props => {
-  …
+const Example = (props) => {
+  // ...
   useKeypress(['ArrowLeft', 'ArrowRight'], (event) => {
     if (event.key === 'ArrowLeft') {
       moveLeft();
@@ -43,7 +43,7 @@ const Example = props => {
       moveRight();
     }
   });
-  …
+  // ...
 };
 ```
 
