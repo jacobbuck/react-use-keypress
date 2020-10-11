@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Updated `handler` parameter to allow nullish values.
+
 ## v1.0.1 - 2020-07-09
 
 ### Changed
