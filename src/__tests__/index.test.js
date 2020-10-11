@@ -56,3 +56,15 @@ test('supports older browsers', () => {
 
   expect(handler).toHaveBeenCalledWith(event);
 });
+
+test('doesn’t throw if handler is nullish', () => {
+  const { result: result1 } = renderHook(() => useKeypress('Enter', null));
+  const { result: result2 } = renderHook(() => useKeypress('Enter', undefined));
+
+  act(() => {
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+  });
+
+  expect(result1.error).toBeUndefined();
+  expect(result2.error).toBeUndefined();
+});
