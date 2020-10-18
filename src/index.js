@@ -14,7 +14,7 @@ const useKeypress = (keys, handler) => {
       });
     } else if (typeof keys !== 'string') {
       throw new TypeError(
-        `Expected \`keys\` to be of type \`array\` or \`string\`, but received type \`${typeof handler}\``
+        `Expected \`keys\` to be of type \`array\` or \`string\`, but received type \`${typeof keys}\``
       );
     }
     if (typeof handler !== 'function' && handler != null) {
