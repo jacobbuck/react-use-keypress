@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Added
+
+- Added type checking of parameters in `useKeypress` hook.
+
 ### Changed
 
 - Updated `handler` parameter to allow nullish values.
