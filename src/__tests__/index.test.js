@@ -1,33 +1,36 @@
 import { act, renderHook } from '@testing-library/react-hooks';
 import useKeypress from '..';
 
-test('calls handler when matching key has been pressed', () => {
-  const handler = jest.fn();
-  renderHook(() => useKeypress('Escape', handler));
+const createKeydownEvent = (key) => new KeyboardEvent('keydown', { key });
 
-  const event = new KeyboardEvent('keydown', { key: 'Escape' });
-
+const dispatchWindowEvent = (event) =>
   act(() => {
     window.dispatchEvent(event);
   });
+
+const renderUseKeypressHook = (...args) =>
+  renderHook(() => useKeypress(...args));
+
+test('calls handler when matching key has been pressed', () => {
+  const handler = jest.fn();
+  renderUseKeypressHook('Escape', handler);
+
+  const event = createKeydownEvent('Escape');
+
+  dispatchWindowEvent(event);
 
   expect(handler).toHaveBeenCalledWith(event);
 });
 
 test('calls handler when matching keys has been pressed', () => {
   const handler = jest.fn();
-  renderHook(() => useKeypress(['Enter', ' '], handler));
+  renderUseKeypressHook(['Enter', ' '], handler);
 
-  const event1 = new KeyboardEvent('keydown', { key: 'Enter' });
-  const event2 = new KeyboardEvent('keydown', { key: ' ' });
+  const event1 = createKeydownEvent('Enter');
+  const event2 = createKeydownEvent(' ');
 
-  act(() => {
-    window.dispatchEvent(event1);
-  });
-
-  act(() => {
-    window.dispatchEvent(event2);
-  });
+  dispatchWindowEvent(event1);
+  dispatchWindowEvent(event2);
 
   expect(handler).toHaveBeenNthCalledWith(1, event1);
   expect(handler).toHaveBeenNthCalledWith(2, event2);
@@ -35,34 +38,28 @@ test('calls handler when matching keys has been pressed', () => {
 
 test('does not call handler when non-matching key has been pressed', () => {
   const handler = jest.fn();
-  renderHook(() => useKeypress('Escape', handler));
+  renderUseKeypressHook('Escape', handler);
 
-  act(() => {
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-  });
+  dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(handler).not.toHaveBeenCalled();
 });
 
 test('supports older browsers', () => {
   const handler = jest.fn();
-  renderHook(() => useKeypress('Escape', handler));
+  renderUseKeypressHook('Escape', handler);
 
-  const event = new KeyboardEvent('keydown', { key: 'Esc' });
+  const event = createKeydownEvent('Esc');
 
-  act(() => {
-    window.dispatchEvent(event);
-  });
+  dispatchWindowEvent(event);
 
   expect(handler).toHaveBeenCalledWith(event);
 });
 
 test('throws if keys is not an array or string', () => {
-  const { result } = renderHook(() => useKeypress({}, jest.fn()));
+  const { result } = renderUseKeypressHook({}, jest.fn());
 
-  act(() => {
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-  });
+  dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
     new TypeError(
@@ -72,11 +69,9 @@ test('throws if keys is not an array or string', () => {
 });
 
 test('throws if keys contains a value that is not a string', () => {
-  const { result } = renderHook(() => useKeypress(['Escape', {}], jest.fn()));
+  const { result } = renderUseKeypressHook(['Escape', {}], jest.fn());
 
-  act(() => {
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-  });
+  dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
     new TypeError(
@@ -86,11 +81,9 @@ test('throws if keys contains a value that is not a string', () => {
 });
 
 test('throws if handler is not a function', () => {
-  const { result } = renderHook(() => useKeypress('Enter', {}));
+  const { result } = renderUseKeypressHook('Enter', {});
 
-  act(() => {
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-  });
+  dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
     new TypeError(
@@ -100,12 +93,10 @@ test('throws if handler is not a function', () => {
 });
 
 test('doesn’t throw if handler is nullish', () => {
-  const { result: result1 } = renderHook(() => useKeypress('Enter', null));
-  const { result: result2 } = renderHook(() => useKeypress('Enter', undefined));
+  const { result: result1 } = renderUseKeypressHook('Enter', null);
+  const { result: result2 } = renderUseKeypressHook('Enter', undefined);
 
-  act(() => {
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-  });
+  dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result1.error).toBeUndefined();
   expect(result2.error).toBeUndefined();
@@ -115,11 +106,9 @@ test('doesn’t typecheck in production', () => {
   const env = process.env;
   process.env = { NODE_ENV: 'production' };
 
-  const { result } = renderHook(() => useKeypress({}, jest.fn()));
+  const { result } = renderUseKeypressHook({}, jest.fn());
 
-  act(() => {
-    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
-  });
+  dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).not.toEqual(
     new TypeError(
