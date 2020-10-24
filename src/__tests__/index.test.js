@@ -57,6 +57,48 @@ test('supports older browsers', () => {
   expect(handler).toHaveBeenCalledWith(event);
 });
 
+test('throws if keys is not an array or string', () => {
+  const { result } = renderHook(() => useKeypress({}, jest.fn()));
+
+  act(() => {
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+  });
+
+  expect(result.error).toEqual(
+    new TypeError(
+      'Expected `keys` to be of type `array` or `string`, but received type `object`'
+    )
+  );
+});
+
+test('throws if keys contains a value that is not a string', () => {
+  const { result } = renderHook(() => useKeypress(['Escape', {}], jest.fn()));
+
+  act(() => {
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+  });
+
+  expect(result.error).toEqual(
+    new TypeError(
+      'Expected `keys[1]` to be of type `string`, but received type `object`'
+    )
+  );
+});
+
+test('throws if handler is not a function', () => {
+  const { result } = renderHook(() => useKeypress('Enter', {}));
+
+  act(() => {
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+  });
+
+  expect(result.error).toEqual(
+    new TypeError(
+      'Expected `handler` to be of type `function`, but received type `object`'
+    )
+  );
+});
+
 test('doesn’t throw if handler is nullish', () => {
   const { result: result1 } = renderHook(() => useKeypress('Enter', null));
   const { result: result2 } = renderHook(() => useKeypress('Enter', undefined));
@@ -67,4 +109,23 @@ test('doesn’t throw if handler is nullish', () => {
 
   expect(result1.error).toBeUndefined();
   expect(result2.error).toBeUndefined();
+});
+
+test('doesn’t typecheck in production', () => {
+  const env = process.env;
+  process.env = { NODE_ENV: 'production' };
+
+  const { result } = renderHook(() => useKeypress({}, jest.fn()));
+
+  act(() => {
+    window.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter' }));
+  });
+
+  expect(result.error).not.toEqual(
+    new TypeError(
+      'Expected `keys` to be of type `array` or `string`, but received type `object`'
+    )
+  );
+
+  process.env = env;
 });
