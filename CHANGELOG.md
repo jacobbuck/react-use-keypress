@@ -8,7 +8,7 @@
 
 ### Changed
 
-- Updated `handler` parameter to allow nullish values.
+- Updated `handler` parameter to allow [nullish values](https://developer.mozilla.org/en-US/docs/Glossary/Nullish).
 - Updated devDependencies.
 
 ## v1.0.1 - 2020-07-09
