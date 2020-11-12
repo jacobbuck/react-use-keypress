@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Added source maps to build output.
+
 ## v1.1.0 - 2020-10-25
 
 ### Added
