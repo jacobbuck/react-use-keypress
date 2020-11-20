@@ -37,7 +37,7 @@
   },
   "homepage": "https://github.com/jacobbuck/react-use-keypress#readme",
   "dependencies": {
-    "use-latest": "^1.1.0"
+    "use-latest": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.7",
