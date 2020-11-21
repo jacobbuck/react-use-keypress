@@ -32,12 +32,11 @@ const useKeypress = (keys, handler) => {
       shimKeyboardEvent(event);
 
       if (
-        (Array.isArray(keysRef.current)
-          ? keysRef.current.includes(event.key)
-          : keysRef.current === event.key) &&
-        handerRef.current != null
+        (Array.isArray(keysRef.current) &&
+          keysRef.current.includes(event.key)) ||
+        keysRef.current === event.key
       ) {
-        handerRef.current(event);
+        handerRef.current?.(event);
       }
     };
 
