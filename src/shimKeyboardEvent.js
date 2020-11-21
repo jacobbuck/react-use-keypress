@@ -25,6 +25,8 @@ const shimKeyboardEvent = (event) => {
     const key = aliases.get(event.key);
 
     Object.defineProperty(event, 'key', {
+      configurable: true,
+      enumerable: true,
       get() {
         return key;
       },
