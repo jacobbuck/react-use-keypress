@@ -62,7 +62,7 @@ test('throws if keys is not an array or string', () => {
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    Error('Invariant failed: Expected `keys` to be an array or string')
+    new Error('Invariant failed: Expected `keys` to be an array or string')
   );
 });
 
@@ -72,7 +72,7 @@ test('throws if keys contains a value that is not a string', () => {
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    Error('Invariant failed: Expected `keys[1]` to be a string')
+    new Error('Invariant failed: Expected `keys[1]` to be a string')
   );
 });
 
@@ -82,7 +82,7 @@ test('throws if handler is not a function', () => {
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    Error('Invariant failed: Expected `handler` to be a function')
+    new Error('Invariant failed: Expected `handler` to be a function')
   );
 });
 
