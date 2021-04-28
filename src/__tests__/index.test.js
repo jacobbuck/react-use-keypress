@@ -56,37 +56,37 @@ test('supports older browsers', () => {
   expect(handler).toHaveBeenCalledWith(event);
 });
 
-test('throws TypeError if keys is not an array or string', () => {
+test('throws if keys is not an array or string', () => {
   const { result } = renderUseKeypressHook({}, jest.fn());
 
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    new TypeError('Expected `keys` to be an array or string')
+    Error('Invariant failed: Expected `keys` to be an array or string')
   );
 });
 
-test('throws TypeError if keys contains a value that is not a string', () => {
+test('throws if keys contains a value that is not a string', () => {
   const { result } = renderUseKeypressHook(['Escape', {}], jest.fn());
 
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    new TypeError('Expected `keys[1]` to be a string')
+    Error('Invariant failed: Expected `keys[1]` to be a string')
   );
 });
 
-test('throws TypeError if handler is not a function', () => {
+test('throws if handler is not a function', () => {
   const { result } = renderUseKeypressHook('Enter', {});
 
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    new TypeError('Expected `handler` to be a function')
+    Error('Invariant failed: Expected `handler` to be a function')
   );
 });
 
-test('doesn’t throw TypeError if handler is nullish', () => {
+test('doesn’t throw if handler is nullish', () => {
   const { result: result1 } = renderUseKeypressHook('Enter', null);
   const { result: result2 } = renderUseKeypressHook('Enter', undefined);
 
@@ -94,19 +94,4 @@ test('doesn’t throw TypeError if handler is nullish', () => {
 
   expect(result1.error).toBeUndefined();
   expect(result2.error).toBeUndefined();
-});
-
-test('doesn’t typecheck in production', () => {
-  const env = process.env;
-  process.env = { NODE_ENV: 'production' };
-
-  const { result } = renderUseKeypressHook({}, jest.fn());
-
-  dispatchWindowEvent(createKeydownEvent('Enter'));
-
-  expect(result.error).not.toEqual(
-    new TypeError('Expected `keys` to be an array or string')
-  );
-
-  process.env = env;
 });
