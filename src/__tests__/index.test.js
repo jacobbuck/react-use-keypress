@@ -62,9 +62,7 @@ test('throws TypeError if keys is not an array or string', () => {
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    new TypeError(
-      'Expected `keys` to be of type `array` or `string`, but received type `object`'
-    )
+    new TypeError('Expected `keys` to be an array or string')
   );
 });
 
@@ -74,9 +72,7 @@ test('throws TypeError if keys contains a value that is not a string', () => {
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    new TypeError(
-      'Expected `keys[1]` to be of type `string`, but received type `object`'
-    )
+    new TypeError('Expected `keys[1]` to be a string')
   );
 });
 
@@ -86,9 +82,7 @@ test('throws TypeError if handler is not a function', () => {
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).toEqual(
-    new TypeError(
-      'Expected `handler` to be of type `function`, but received type `object`'
-    )
+    new TypeError('Expected `handler` to be a function')
   );
 });
 
@@ -111,9 +105,7 @@ test('doesn’t typecheck in production', () => {
   dispatchWindowEvent(createKeydownEvent('Enter'));
 
   expect(result.error).not.toEqual(
-    new TypeError(
-      'Expected `keys` to be of type `array` or `string`, but received type `object`'
-    )
+    new TypeError('Expected `keys` to be an array or string')
   );
 
   process.env = env;

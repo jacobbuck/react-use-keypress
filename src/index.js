@@ -7,20 +7,14 @@ const useKeypress = (keys, handler) => {
     if (Array.isArray(keys)) {
       keys.forEach((key, i) => {
         if (typeof key !== 'string') {
-          throw new TypeError(
-            `Expected \`keys[${i}]\` to be of type \`string\`, but received type \`${typeof key}\``
-          );
+          throw new TypeError(`Expected \`keys[${i}]\` to be a string`);
         }
       });
     } else if (typeof keys !== 'string') {
-      throw new TypeError(
-        `Expected \`keys\` to be of type \`array\` or \`string\`, but received type \`${typeof keys}\``
-      );
+      throw new TypeError('Expected `keys` to be an array or string');
     }
     if (typeof handler !== 'function' && handler != null) {
-      throw new TypeError(
-        `Expected \`handler\` to be of type \`function\`, but received type \`${typeof handler}\``
-      );
+      throw new TypeError('Expected `handler` to be a function');
     }
   }
 
