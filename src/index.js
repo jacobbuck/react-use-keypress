@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import invariant from 'tiny-invariant';
-import useLatest from 'use-latest';
 import shimKeyboardEvent from './shimKeyboardEvent';
 
 const useKeypress = (keys, handler) => {
@@ -21,28 +20,26 @@ const useKeypress = (keys, handler) => {
     'Expected `handler` to be a function'
   );
 
-  const keysRef = useLatest(keys);
-  const handerRef = useLatest(handler);
+  const eventListenerRef = useRef();
 
   useEffect(() => {
-    const handleKeydown = (event) => {
+    eventListenerRef.current = (event) => {
       shimKeyboardEvent(event);
-
-      if (
-        (Array.isArray(keysRef.current) &&
-          keysRef.current.includes(event.key)) ||
-        keysRef.current === event.key
-      ) {
-        handerRef.current?.(event);
+      if (Array.isArray(keys) ? keys.includes(event.key) : keys === event.key) {
+        handler?.(event);
       }
     };
+  }, [keys, handler]);
 
-    window.addEventListener('keydown', handleKeydown);
-
-    return () => {
-      window.removeEventListener('keydown', handleKeydown);
+  useEffect(() => {
+    const eventListener = (event) => {
+      eventListenerRef.current(event);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    window.addEventListener('keydown', eventListener);
+    return () => {
+      window.removeEventListener('keydown', eventListener);
+    };
+  }, []);
 };
 
 export default useKeypress;
