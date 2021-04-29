@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Added [tiny-invariant](https://www.npmjs.com/package/tiny-invariant) dependency.
+
+### Changed
+
+- Changed type checking to use `invariant` function.
+- Updated devDependencies.
+
+### Removed
+
+- Removed [use-latest](https://www.npmjs.com/package/use-latest) dependency.
+
 ## v1.2.0 - 2020-11-21
 
 ### Added
