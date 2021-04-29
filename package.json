@@ -37,8 +37,7 @@
   },
   "homepage": "https://github.com/jacobbuck/react-use-keypress#readme",
   "dependencies": {
-    "tiny-invariant": "^1.1.0",
-    "use-latest": "^1.2.0"
+    "tiny-invariant": "^1.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",
