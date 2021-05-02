@@ -8,8 +8,7 @@
 
 ### Changed
 
-- Changed type checking to use `invariant` function.
-- Updated devDependencies.
+- Changed type checking to use `invariant` function from [tiny-invariant](https://www.npmjs.com/package/tiny-invariant).
 
 ### Removed
 
@@ -23,8 +22,7 @@
 
 ### Changed
 
-- Bumped up version of [use-latest](https://www.npmjs.com/package/use-latest) to v1.2.0.
-- Updated devDependencies.
+- Updated [use-latest](https://www.npmjs.com/package/use-latest) dependency to v1.2.0.
 
 ## v1.1.0 - 2020-10-25
 
@@ -35,14 +33,12 @@
 ### Changed
 
 - Updated `handler` parameter to allow [nullish values](https://developer.mozilla.org/en-US/docs/Glossary/Nullish).
-- Updated devDependencies.
 
 ## v1.0.1 - 2020-07-09
 
-### Changed
+### Added
 
-- Used [use-latest](https://www.npmjs.com/package/use-latest) for handling refs in `useKeypress` hook.
-- Updated devDependencies.
+- Added [use-latest](https://www.npmjs.com/package/use-latest) dependency.
 
 ## v1.0.0 - 2020-05-19
 
