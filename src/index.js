@@ -39,6 +39,10 @@ const useKeypress = (keys, handler) => {
     return () => {
       window.removeEventListener('keydown', eventListener);
     };
+    window.addEventListener('keyup', eventListener);
+    return () => {
+      window.removeEventListener('keyup', eventListener);
+    };
   }, []);
 };
 
