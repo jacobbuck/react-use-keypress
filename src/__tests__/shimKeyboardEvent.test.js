@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import shimKeyboardEvent from '../shimKeyboardEvent';
 
 test('fixes key propertey in KeyboardEvent set by older browsers', () => {
