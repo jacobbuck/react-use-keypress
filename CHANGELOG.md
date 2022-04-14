@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Updated [tiny-invariant](https://www.npmjs.com/package/tiny-invariant) dependency to v1.2.0.
+- Updated [react](https://www.npmjs.com/package/react) peerDependency to support v18.
+
 ## v1.3.0 - 2021-05-02
 
 ### Added
