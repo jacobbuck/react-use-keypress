@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { act, renderHook } from '@testing-library/react-hooks';
+import { act, renderHook } from '@testing-library/react';
 import useKeypress from '..';
 
 const createKeydownEvent = (key) => new KeyboardEvent('keydown', { key });
@@ -60,41 +60,27 @@ test('supports older browsers', () => {
 });
 
 test('throws if keys is not an array or string', () => {
-  const { result } = renderUseKeypressHook({}, jest.fn());
-
-  dispatchWindowEvent(createKeydownEvent('Enter'));
-
-  expect(result.error).toEqual(
+  expect(() => useKeypress({}, jest.fn())).toThrow(
     new Error('Invariant failed: Expected `keys` to be an array or string')
   );
 });
 
 test('throws if keys contains a value that is not a string', () => {
-  const { result } = renderUseKeypressHook(['Escape', {}], jest.fn());
-
-  dispatchWindowEvent(createKeydownEvent('Enter'));
-
-  expect(result.error).toEqual(
+  expect(() => useKeypress(['Escape', {}], jest.fn())).toThrow(
     new Error('Invariant failed: Expected `keys[1]` to be a string')
   );
 });
 
 test('throws if handler is not a function', () => {
-  const { result } = renderUseKeypressHook('Enter', {});
-
-  dispatchWindowEvent(createKeydownEvent('Enter'));
-
-  expect(result.error).toEqual(
+  expect(() => useKeypress('Enter', {})).toThrow(
     new Error('Invariant failed: Expected `handler` to be a function')
   );
 });
 
 test('doesn’t throw if handler is nullish', () => {
-  const { result: result1 } = renderUseKeypressHook('Enter', null);
-  const { result: result2 } = renderUseKeypressHook('Enter', undefined);
-
-  dispatchWindowEvent(createKeydownEvent('Enter'));
-
-  expect(result1.error).toBeUndefined();
-  expect(result2.error).toBeUndefined();
+  expect(() => {
+    renderUseKeypressHook('Enter', null);
+    renderUseKeypressHook('Enter', undefined);
+    dispatchWindowEvent(createKeydownEvent('Enter'));
+  }).not.toThrow();
 });
